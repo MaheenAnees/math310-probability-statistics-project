@@ -21,8 +21,10 @@ def randomWalk(steps, start_pos, prob_arr):
             x += 1
             y = y
         time.append(x)
-        position.append(y)
+        position.append(y)    
     return [time, position]
+
+
 
 
 Randwalk1 = randomWalk(25, 0, [1/3, 1/3, 1/3])  # equally likely
@@ -37,16 +39,16 @@ Randwalk9 = randomWalk(25, 10, [1/2, 1/2, 0]) # same as randwalk4 but diff start
 Randwalk10 = randomWalk(25, -5, [0.2, 0.5, 0.3]) # same as randwalk5 but diff start pos
 
 
-plt.plot(Randwalk1[0], Randwalk1[1], '-go', label="Randwalk1")
-plt.plot(Randwalk2[0], Randwalk2[1], '-bo', label="Randwalk2")
-plt.plot(Randwalk3[0], Randwalk3[1], '-yo', label="Randwalk3")
-plt.plot(Randwalk4[0], Randwalk4[1], '-ko', label="Randwalk4")
-plt.plot(Randwalk5[0], Randwalk5[1], '-co', label="Randwalk5")
-plt.plot(Randwalk6[0], Randwalk6[1], '-mo', label="Randwalk6")
-plt.plot(Randwalk7[0], Randwalk7[1], '-ro', label="Randwalk7")
-plt.plot(Randwalk8[0], Randwalk8[1], '--go', label="Randwalk8")
-plt.plot(Randwalk9[0], Randwalk9[1], '--ro', label="Randwalk9")
-plt.plot(Randwalk10[0], Randwalk10[1], '--yo', label="Randwalk10")
+plt.plot(Randwalk1[0], Randwalk1[1], '-g', label="Randwalk1")
+plt.plot(Randwalk2[0], Randwalk2[1], '-b', label="Randwalk2")
+plt.plot(Randwalk3[0], Randwalk3[1], '-y', label="Randwalk3")
+plt.plot(Randwalk4[0], Randwalk4[1], '-k', label="Randwalk4")
+plt.plot(Randwalk5[0], Randwalk5[1], '-c', label="Randwalk5")
+plt.plot(Randwalk6[0], Randwalk6[1], '-m', label="Randwalk6")
+plt.plot(Randwalk7[0], Randwalk7[1], '-r', label="Randwalk7")
+plt.plot(Randwalk8[0], Randwalk8[1], '--g', label="Randwalk8")
+plt.plot(Randwalk9[0], Randwalk9[1], '--r', label="Randwalk9")
+plt.plot(Randwalk10[0], Randwalk10[1], '--y', label="Randwalk10")
 
 
 plt.title("1D Random Walks")
