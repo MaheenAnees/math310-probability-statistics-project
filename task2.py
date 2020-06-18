@@ -3,50 +3,44 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def randomWalk(steps, start_pos, prob_arr):
+def randomWalk(start_pos1, start_pos2, prob_arr1, prob_arr2):
     x = 0
-    y = start_pos
+    y1 = start_pos1
+    y2 = start_pos2
     time = [x]
-    position = [y]
-
-    for i in range(0, steps):
-        move = np.random.choice(['L', 'R', 'S'], p=prob_arr)
-        if move == 'R':
-            x += 1
-            y += 1
-        elif move == 'L':
-            x += 1
-            y += -1
-        else:
-            x += 1
-            y = y
+    positionY1 = [y1]
+    positionY2 = [y2]
+    while y1 != y2:
+        move1 = np.random.choice([1, 0, -1], p=prob_arr1)
+        move2 = np.random.choice([1, 0, -1], p=prob_arr2)
+        x += 1
+        y1 += move1
+        y2 += move2        
         time.append(x)
-        position.append(y)
-    return [time, position]
+        positionY1.append(y1)
+        positionY2.append(y2)
+    return [time, positionY1, positionY2]
 
 
 
 
 #simulation1
-Person1a = randomWalk(360, 0, [1/3, 1/3, 1/3]) 
-Person2a = randomWalk(360, 10, [1/3, 1/3, 1/3])
+Randwalk1 = randomWalk(0, 1, [1/3, 1/3, 1/3], [1/3, 1/3, 1/3]) 
 #simulation2
-Person1b = randomWalk(360, 5, [1/6, 2/3, 1/6]) 
-Person2b = randomWalk(360, 10, [1/3, 1/3, 1/3])
-
-fig, (ax1, ax2) = plt.subplots(2)
-
+#Randwalk2 = randomWalk(5, 10, [1/6, 1/6, 2/3], [2/3, 1/6, 1/6]) 
+#fig, (ax1, ax2) = plt.subplots(2)
 #subplot1
-ax1.plot(Person1a[0], Person1a[1], '-b', label="Person1")
-ax1.plot(Person2a[0], Person2a[1], '-g', label="Person2")
+plt.plot(Randwalk1[0], Randwalk1[1], '-b', label="Person1")
+plt.plot(Randwalk1[0], Randwalk1[2], '-g', label="Person2")
 #subplot2
-ax2.plot(Person1b[0], Person1b[1], '-b', label="Person1")
-ax2.plot(Person2b[0], Person2b[1], '-g', label="Person2")
+# ax2.plot(Randwalk2[0], Randwalk2[1], '-b', label="Person1")
+# ax2.plot(Randwalk2[0], Randwalk2[2], '-g', label="Person2")
 
-ax1.set(ylabel='position of the person')
-ax2.set(xlabel='time (t)', ylabel='position of the person')
+#ax1.set(ylabel='position of the person')
+plt.xlabel=('time (t)')
+plt.ylabel=('position of the person')
 
-ax1.legend(bbox_to_anchor=(1.005, 1), loc='upper left', borderaxespad=0, fancybox=True)
-ax2.legend(bbox_to_anchor=(1.005, 1), loc='upper left', borderaxespad=0, fancybox=True)
+plt.legend(bbox_to_anchor=(1.005, 1), loc='upper left', borderaxespad=0, fancybox=True)
+#ax2.legend(bbox_to_anchor=(1.005, 1), loc='upper left', borderaxespad=0, fancybox=True)
 plt.show()
 
