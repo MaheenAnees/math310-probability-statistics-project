@@ -22,25 +22,14 @@ def randomWalk(start_pos1, start_pos2, prob_arr1, prob_arr2):
     return [time, positionY1, positionY2]
 
 
-
-
-#simulation1
 Randwalk1 = randomWalk(0, 1, [1/3, 1/3, 1/3], [1/3, 1/3, 1/3]) 
-#simulation2
-#Randwalk2 = randomWalk(5, 10, [1/6, 1/6, 2/3], [2/3, 1/6, 1/6]) 
-#fig, (ax1, ax2) = plt.subplots(2)
-#subplot1
+\
 plt.plot(Randwalk1[0], Randwalk1[1], '-b', label="Person1")
 plt.plot(Randwalk1[0], Randwalk1[2], '-g', label="Person2")
-#subplot2
-# ax2.plot(Randwalk2[0], Randwalk2[1], '-b', label="Person1")
-# ax2.plot(Randwalk2[0], Randwalk2[2], '-g', label="Person2")
 
-#ax1.set(ylabel='position of the person')
-plt.xlabel=('time (t)')
-plt.ylabel=('position of the person')
+plt.xlabel('time (t)')
+plt.ylabel('position of the person')
 
 plt.legend(bbox_to_anchor=(1.005, 1), loc='upper left', borderaxespad=0, fancybox=True)
-#ax2.legend(bbox_to_anchor=(1.005, 1), loc='upper left', borderaxespad=0, fancybox=True)
 plt.show()
 
