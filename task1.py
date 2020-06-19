@@ -8,50 +8,110 @@ def randomWalk(steps, start_pos, prob_arr):
     y = start_pos
     time = [x]
     position = [y]
+    Z = [-1, 1, 0]
+    move = np.random.choice(Z, steps, p=prob_arr)
 
-    for i in range(0, steps):
-        move = np.random.choice(['L', 'R', 'S'], p=prob_arr)
-        if move == 'R':
-            x += 1
-            y += 1
-        elif move == 'L':
-            x += 1
-            y += -1
-        else:
-            x += 1
-            y = y
+    for i in move:
+        x += 1
+        y += i
         time.append(x)
-        position.append(y)
-    return [time, position]
+        position.append(y) 
+    exp = Z[0]*prob_arr[0] + Z[1]*prob_arr[1] + Z[2]*prob_arr[2]  
+    expDist = exp*steps 
+    Dist = np.sum(move)
+    return [time, position, ((expDist**2)**0.5), ((Dist**2)**0.5)]
 
 
-Randwalk1 = randomWalk(25, 0, [1/3, 1/3, 1/3])  # equally likely
-Randwalk2 = randomWalk(25, 0, [2/3, 1/6, 1/6]) # probability of moving left is 2x
-Randwalk3 = randomWalk(25, 0, [1/6, 2/3, 1/6]) # probability of moving right is 2x
-Randwalk4 = randomWalk(25, 0, [1/2, 1/2, 0]) # the node always moves either left or right
-Randwalk5 = randomWalk(25, 0, [0.2, 0.5, 0.3]) 
-Randwalk6 = randomWalk(25, 2, [1/3, 1/3, 1/3]) # same as randwalk1 but diff start pos
-Randwalk7 = randomWalk(25, 3, [2/3, 1/6, 1/6]) # same as randwalk2 but diff start pos
-Randwalk8 = randomWalk(25, -1, [1/6, 2/3, 1/6]) # same as randwalk3 but diff start pos
-Randwalk9 = randomWalk(25, 10, [1/2, 1/2, 0]) # same as randwalk4 but diff start pos
-Randwalk10 = randomWalk(25, -5, [0.2, 0.5, 0.3]) # same as randwalk5 but diff start pos
 
+#equal prob same start position
+Randwalk1a = randomWalk(25, 0, [1/3, 1/3, 1/3])
+Randwalk1b = randomWalk(25, 0, [1/3, 1/3, 1/3])
+Randwalk1c = randomWalk(25, 0, [1/3, 1/3, 1/3])
+Randwalk1d = randomWalk(25, 0, [1/3, 1/3, 1/3])
+Randwalk1e = randomWalk(25, 0, [1/3, 1/3, 1/3])
+Randwalk1f = randomWalk(25, 0, [1/3, 1/3, 1/3])
+#equal prob diff start position
+Randwalk2a = randomWalk(25, 2, [1/3, 1/3, 1/3])
+Randwalk2b = randomWalk(25, 2, [1/3, 1/3, 1/3])
+Randwalk2c = randomWalk(25, 2, [1/3, 1/3, 1/3])
+Randwalk2d = randomWalk(25, 2, [1/3, 1/3, 1/3])
+Randwalk2e = randomWalk(25, 2, [1/3, 1/3, 1/3])
+Randwalk2f = randomWalk(25, 2, [1/3, 1/3, 1/3])
+#unequal prob same start position
+Randwalk3a = randomWalk(25, 0, [0.3, 0.5, 0.2])
+Randwalk3b = randomWalk(25, 0, [0.3, 0.5, 0.2])
+Randwalk3c = randomWalk(25, 0, [0.3, 0.5, 0.2])
+Randwalk3d = randomWalk(25, 0, [0.3, 0.5, 0.2])
+Randwalk3e = randomWalk(25, 0, [0.3, 0.5, 0.2])
+Randwalk3f = randomWalk(25, 0, [0.3, 0.5, 0.2])
+#unequal prob diff start position
+Randwalk4a = randomWalk(25, 2, [0.3, 0.5, 0.2])
+Randwalk4b = randomWalk(25, 2, [0.3, 0.5, 0.2])
+Randwalk4c = randomWalk(25, 2, [0.3, 0.5, 0.2])
+Randwalk4d = randomWalk(25, 2, [0.3, 0.5, 0.2])
+Randwalk4e = randomWalk(25, 2, [0.3, 0.5, 0.2])
+Randwalk4f = randomWalk(25, 2, [0.3, 0.5, 0.2])
 
-plt.plot(Randwalk1[0], Randwalk1[1], '-go', label="Randwalk1")
-plt.plot(Randwalk2[0], Randwalk2[1], '-bo', label="Randwalk2")
-plt.plot(Randwalk3[0], Randwalk3[1], '-yo', label="Randwalk3")
-plt.plot(Randwalk4[0], Randwalk4[1], '-ko', label="Randwalk4")
-plt.plot(Randwalk5[0], Randwalk5[1], '-co', label="Randwalk5")
-plt.plot(Randwalk6[0], Randwalk6[1], '-mo', label="Randwalk6")
-plt.plot(Randwalk7[0], Randwalk7[1], '-ro', label="Randwalk7")
-plt.plot(Randwalk8[0], Randwalk8[1], '--go', label="Randwalk8")
-plt.plot(Randwalk9[0], Randwalk9[1], '--ro', label="Randwalk9")
-plt.plot(Randwalk10[0], Randwalk10[1], '--yo', label="Randwalk10")
+plt.figure()
 
-
-plt.title("1D Random Walks")
-plt.grid(True, color='k')
+plt.subplot(221)
+plt.plot(Randwalk1a[0], Randwalk1a[1], '-g')
+plt.plot(Randwalk1b[0], Randwalk1b[1], '-m')
+plt.plot(Randwalk1c[0], Randwalk1c[1], '-b')
+plt.plot(Randwalk1d[0], Randwalk1d[1], '-r')
+plt.plot(Randwalk1e[0], Randwalk1e[1], '-y')
+plt.plot(Randwalk1f[0], Randwalk1f[1], '-k')
 plt.xlabel('time (t)')
 plt.ylabel('position of the object')
-plt.legend(bbox_to_anchor=(1.005, 1), loc='upper left', borderaxespad=0, fancybox=True)
+
+plt.subplot(222)
+plt.plot(Randwalk2a[0], Randwalk2a[1], '-g')
+plt.plot(Randwalk2b[0], Randwalk2b[1], '-m')
+plt.plot(Randwalk2c[0], Randwalk2c[1], '-b')
+plt.plot(Randwalk2d[0], Randwalk2d[1], '-r')
+plt.plot(Randwalk2e[0], Randwalk2e[1], '-y')
+plt.plot(Randwalk2f[0], Randwalk2f[1], '-k')
+plt.xlabel('time (t)')
+plt.ylabel('position of the object')
+
+plt.subplot(223)
+plt.plot(Randwalk3a[0], Randwalk3a[1], '-g')
+plt.plot(Randwalk3b[0], Randwalk3b[1], '-m')
+plt.plot(Randwalk3c[0], Randwalk3c[1], '-b')
+plt.plot(Randwalk3d[0], Randwalk3d[1], '-r')
+plt.plot(Randwalk3e[0], Randwalk3e[1], '-y')
+plt.plot(Randwalk3f[0], Randwalk3f[1], '-k')
+plt.xlabel('time (t)')
+plt.ylabel('position of the object')
+
+plt.subplot(224)
+plt.plot(Randwalk4a[0], Randwalk4a[1], '-g')
+plt.plot(Randwalk4b[0], Randwalk4b[1], '-m')
+plt.plot(Randwalk4c[0], Randwalk4c[1], '-b')
+plt.plot(Randwalk4d[0], Randwalk4d[1], '-r')
+plt.plot(Randwalk4e[0], Randwalk4e[1], '-y')
+plt.plot(Randwalk4f[0], Randwalk4f[1], '-k')
+plt.xlabel('time (t)')
+plt.ylabel('position of the object')
+
+
+# plt.title("1D Random Walks-Discrete Model")
+print('For plot top-left')
+print('Expected distance according to model: ' + str(Randwalk1a[2]))
+print('Average of the distance covered: '+ str((Randwalk1a[3] + Randwalk1b[3] + Randwalk1c[3] + Randwalk1d[3] + Randwalk1e[3] + Randwalk1f[3])/6))
+print('-----------------------------------------------------------------')
+print('For plot top-right')
+print('Expected distance according to model: ' + str(Randwalk2a[2]))
+print('Average of the distance covered: '+ str((Randwalk2a[3] + Randwalk2b[3] + Randwalk2c[3] + Randwalk2d[3] + Randwalk2e[3] + Randwalk2f[3])/6))
+print('-----------------------------------------------------------------')
+print('For plot bottom-left')
+print('Expected distance according to model: ' + str(Randwalk3a[2]))
+print('Average of the distance covered: '+ str((Randwalk3a[3] + Randwalk3b[3] + Randwalk3c[3] + Randwalk3d[3] + Randwalk3e[3] + Randwalk3f[3])/6))
+print('-----------------------------------------------------------------')
+print('For plot bottom-right')
+print('Expected distance according to model: ' + str(Randwalk4a[2]))
+print('Average of the distance covered: '+ str((Randwalk4a[3] + Randwalk4b[3] + Randwalk4c[3] + Randwalk4d[3] + Randwalk4e[3] + Randwalk4f[3])/6))
+
+
+plt.subplots_adjust(top=0.92, bottom=0.08, left=0.10, right=0.95, hspace=0.25, wspace=0.35)
 plt.show()
