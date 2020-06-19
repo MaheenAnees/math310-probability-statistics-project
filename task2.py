@@ -23,7 +23,7 @@ def randomWalk(start_pos1, start_pos2, prob_arr1, prob_arr2):
 
 
 Randwalk1 = randomWalk(0, 1, [1/3, 1/3, 1/3], [1/3, 1/3, 1/3]) 
-\
+print('Number of steps: ' ,len(Randwalk1[0]))
 plt.plot(Randwalk1[0], Randwalk1[1], '-b', label="Person1")
 plt.plot(Randwalk1[0], Randwalk1[2], '-g', label="Person2")
 

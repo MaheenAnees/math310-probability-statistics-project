@@ -26,7 +26,6 @@ plt.plot(Randwalk4[0], Randwalk4[1], '-m')
 plt.plot(Randwalk5[0], Randwalk5[1], '-r') 
 plt.plot(Randwalk6[0], Randwalk6[1], '-c') 
 
-plt.title("1D Random Walk- Continuous model")
 plt.xlabel('time (t)')
 plt.ylabel('position of the object')
 print('Expected distance according to model: ' + str(Randwalk1[3]))
